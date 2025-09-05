@@ -5,10 +5,11 @@ Kumpulan proyek machine learning deteksi DDoS dengan berbagai model yang digunak
 ## Dataset
 Source    : Network Traffic Dataset on Kaggle
 Size      : 104345 rows
-Features  :
+Features  : dt, dur, dur_nsec, tot_dur, pktrate, Protocol, port_no, tx_kbps, rx_kbps, tot_kbps, label
 Target    : 0 = Normal, and 1 = DDoS
 
 ## Models Implemented
 RandomForest Classifier
 
-#Results
+## Results
+RandomForest Classifier accuracy : 99.6%
