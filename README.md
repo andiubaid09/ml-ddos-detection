@@ -10,6 +10,8 @@ Target    : 0 = Normal, and 1 = DDoS
 
 ## Models Implemented
 RandomForest Classifier
+Multi-Layer Perceptron
 
 ## Results
 RandomForest Classifier accuracy : 99.6%
+Multi-Layer Perceptron           : 98.8%
