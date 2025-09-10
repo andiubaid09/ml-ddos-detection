@@ -13,5 +13,6 @@ RandomForest Classifier
 Multi-Layer Perceptron
 
 ## Results
-RandomForest Classifier accuracy : 99.6% \n
+RandomForest Classifier accuracy : 99.6% 
 Multi-Layer Perceptron           : 98.8%
+LightBGM (Gradient Boosting)     : 99.9%
