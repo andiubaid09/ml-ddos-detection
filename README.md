@@ -52,7 +52,7 @@ Kumpulan proyek machine learning untuk deteksi DDoS menggunakan network flow dat
 
 ## Notes
 
-- LightGBM secara native menangani missing values 0.04% tanpa imputasi tambahan.  
+- LightGBM, XGBoost dan CatBoost secara native menangani missing values 0.04% tanpa imputasi tambahan.  
 - XGBoost membutuhkan kolom kategori diubah menjadi numeric (OneHotEncoder).  
 - CatBoost bisa langsung menangani kolom kategori tanpa OneHotEncoder.  
 
