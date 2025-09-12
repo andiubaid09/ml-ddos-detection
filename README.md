@@ -23,7 +23,8 @@ Kumpulan proyek machine learning untuk deteksi DDoS menggunakan network flow dat
 - **RandomForest Classifier**  
 - **Multi-Layer Perceptron (MLP)**  
 - **LightGBM (Gradient Boosting)**  
-- **XGBoost**  
+- **XGBoost**
+- **CatBoost**
 
 ---
 
@@ -35,6 +36,7 @@ Kumpulan proyek machine learning untuk deteksi DDoS menggunakan network flow dat
 | Multi-Layer Perceptron (MLP)  | 98.8%    |
 | LightGBM (Gradient Boosting)  | 99.9%    |
 | XGBoost                       | 99.8%    |
+| CatBoost                      | 99.8%    |
 
 > Semua model telah dievaluasi menggunakan classification report (precision, recall, F1-score) dan confusion matrix. F1-score untuk kelas DDoS dan Normal sangat tinggi, menunjukkan model mampu generalisasi dengan baik.
 
@@ -44,7 +46,8 @@ Kumpulan proyek machine learning untuk deteksi DDoS menggunakan network flow dat
 
 - **LightGBM** → fitur teratas: `dt` (duration)  
 - **RandomForest** → fitur teratas: `pktrate`  
-- **XGBoost** → fitur teratas: `protocol_ICMP`  
+- **XGBoost** → fitur teratas: `protocol_ICMP`
+- **CatBoost** → fitur teratas: `pktrate`
 
 > Catatan: Fitur teratas berbeda-beda tergantung algoritma karena cara model menilai split/impurity berbeda. Semua top feature masih masuk akal secara domain: misalnya DDoS sering menunjukkan paket rate tinggi atau traffic ICMP abnormal.
 
@@ -54,7 +57,7 @@ Kumpulan proyek machine learning untuk deteksi DDoS menggunakan network flow dat
 
 - LightGBM, XGBoost dan CatBoost secara native menangani missing values 0.04% tanpa imputasi tambahan.  
 - XGBoost membutuhkan kolom kategori diubah menjadi numeric (OneHotEncoder).  
-- CatBoost bisa langsung menangani kolom kategori tanpa OneHotEncoder.  
+- CatBoost bisa langsung menangani kolom kategori tanpa OneHotEncoder dengan mendefinisikan kolom kategorialnya ke model dengan membuatkan variabel kategorial.  
 
 ---
 
