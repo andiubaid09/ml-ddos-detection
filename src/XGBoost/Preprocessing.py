@@ -38,3 +38,27 @@ preprocessor = ColumnTransformer(
     ],
     remainder = 'drop'
 )
+scale_pos_weight = len(y_train[y_train==0]) / len(y_train[y_train==1])
+
+from xgboost import XGBClassifier
+
+xgb_clf = XGBClassifier(
+    objective='binary:logistic',
+    n_estimators= 200,
+    learning_rate = 0.1,
+    max_depth= 6,
+    subsample = 0.8,
+    colsample_bytree = 0.8,
+    scale_pos_weight = scale_pos_weight,
+    random_state = 42,
+    n_jobs= -1,
+    eval_metrics= 'logloss'
+
+)
+
+from xgboost import XGBClassifier
+
+XG_pipeline = Pipeline(steps=[
+    ('preprocess', preprocessor),
+    ('classifier', xgb_clf)
+])
