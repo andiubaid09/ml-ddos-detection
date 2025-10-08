@@ -70,3 +70,11 @@ feat_importance_df = pd.DataFrame({
 # Tampilkan top 10 feature paling penting
 print("\nTop 10 fitur penting RandomForest:")
 print(feat_importance_df.head(10))
+
+# Visualisasi
+plt.figure(figsize=(8,5))
+plt.barh(feat_importance_df['feature'][:10], feat_importance_df['importance'][:10])
+plt.gca().invert_yaxis()
+plt.xlabel('Importances')
+plt.title('Top 10 Feature Importances RandomForest')
+plt.show()
