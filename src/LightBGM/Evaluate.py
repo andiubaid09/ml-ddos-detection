@@ -42,3 +42,24 @@ plt.title('Confusion Matrix')
 plt.show()
 model_lbgm = best_model_lbgm.named_steps['classifier'] # Ambil model lbgm
 preprocessor_fit = best_model_lbgm.named_steps['preprocess'] # Ambil nama fitur dari pipeline
+feature_importances = model_lbgm.feature_importances_
+all_feature = preprocessor_fit.get_feature_names_out()
+
+importances_df = pd.DataFrame({
+    'Feature' : all_feature,
+    'Importances' : feature_importances
+}).sort_values(by='Importances', ascending=False)
+print(importances_df.head(10))
+
+# Visualisasi
+
+top_fitur = importances_df.head(10)
+
+plt.figure(figsize=(10,6))
+plt.barh(top_fitur['Feature'],top_fitur['Importances'])
+plt.gca().invert_yaxis()
+plt.title('Top 10 fitur LightBGM')
+plt.xlabel('Importances')
+plt.ylabel('Feature')
+plt.grid(axis = 'x', linestyle='--', alpha=0.7)
+plt.show()
