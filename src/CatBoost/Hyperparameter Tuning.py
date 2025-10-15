@@ -1,4 +1,5 @@
 from scipy.stats import randint, uniform
+from sklearn.model_selection import RandomizedSearchCV
 
 param_distri = {
     # Kedalaman Pohon
@@ -12,8 +13,6 @@ param_distri = {
     # Subsample rate
     'classifier__subsample': uniform(0.5,0.5),
 }
-
-from sklearn.model_selection import RandomizedSearchCV
 
 random_search = RandomizedSearchCV(
     estimator = cat_pipeline,
