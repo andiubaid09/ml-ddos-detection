@@ -1,9 +1,11 @@
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+from sklearn.model_selection import KFold, cross_val_score
+import numpy as np
+
 best_modelCAT = random_search.best_estimator_
 print(best_modelCAT)
 
 # Pengujian menggunakan dataset training
-
-from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 
 y_pred_train = best_modelCAT.predict(X_train)
 acc = accuracy_score(y_train, y_pred_train)
@@ -17,8 +19,6 @@ print(f"Akurasi model dengan data pengujian : {acc_test:.4f}")
 print(classification_report(y_test,y_predi_test))
 
 # Validasi akurasi dengan cross validation
-from sklearn.model_selection import KFold, cross_val_score
-import numpy as np
 
 kf = KFold(n_splits=5, shuffle=True, random_state=42)
 
