@@ -1,5 +1,12 @@
 import pandas as pd
 from google.colab import drive
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.compose import ColumnTransformer
+from catboost import CatBoostClassifier, Pool
+from sklearn.pipeline import Pipeline
+
+
 drive.mount('/content/drive')
 
 datasheet = '/content/drive/My Drive/Datasheet/DDoS/dataset_sdn.csv'
@@ -10,8 +17,6 @@ Features = [
 ]
 df_clean = df[Features]
 
-from sklearn.model_selection import train_test_split
-
 X = df_clean
 y = df['label']
 X_train, X_test, y_train, y_test = train_test_split(
@@ -20,20 +25,15 @@ X_train, X_test, y_train, y_test = train_test_split(
 Numeric_features = ['dt','dur','dur_nsec','tot_dur','pktrate','port_no','tx_kbps','rx_kbps','tot_kbps']
 Kategorial_features = ['Protocol']
 
-from sklearn.preprocessing import StandardScaler
-
 scaler = StandardScaler()
 num_features = Numeric_features
 num_transform = scaler
-
-from sklearn.compose import ColumnTransformer
 
 preprocessor = ColumnTransformer([
     ('num', num_transform, num_features)
 ], remainder="passthrough")
 
 # Membuat base model CatBoos
-from catboost import CatBoostClassifier, Pool
 
 modelCat = CatBoostClassifier(
     loss_function='Logloss',
@@ -43,8 +43,6 @@ modelCat = CatBoostClassifier(
     verbose=0,
     eval_metric='Accuracy'
 )
-
-from sklearn.pipeline import Pipeline
 
 cat_pipeline = Pipeline([
     ('preprocess', preprocessor),
