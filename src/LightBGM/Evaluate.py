@@ -2,6 +2,8 @@ from sklearn.metrics import accuracy_score
 from sklearn.metrics import confusion_matrix, classification_report
 from sklearn.model_selection import KFold, cross_val_score
 from sklearn.model_selection import StratifiedKFold
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 best_model_lbgm = random_searchlbgm.best_estimator_
 print(best_model_lbgm)
@@ -25,9 +27,6 @@ scores = cross_val_score(best_model_lbgm, X, y, cv=skf)
 print("Mean CV Accuracy:", scores.mean())
 
 # Visualisasi 
-import matplotlib.pyplot as plt
-import seaborn as sns
-
 label = ['Normal','DDoS']
 cm = confusion_matrix(y_test, y_pred_test)
 plt.figure(figsize=(6,5))
