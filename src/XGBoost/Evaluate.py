@@ -54,8 +54,6 @@ num_features = numeric_features
 feature_names = list(cat_features) + list(num_features)
 
 # Top Fitur XGBoost
-import matplotlib.pyplot as plt
-
 importances = model.feature_importances_
 
 feat_importance_df = pd.DataFrame({
