@@ -1,6 +1,8 @@
 import pandas as pd
 import numpy as np
 from google.colab import drive
+from sklearn.model_selection import train_test_split
+
 drive.mount ('/content/drive')
 
 datasheet = '/content/drive/My Drive/Datasheet/dataset_sdn.csv'
@@ -9,8 +11,6 @@ Features = [
     'dt','dur','dur_nsec','tot_dur','pktrate','Protocol','port_no','tx_kbps','rx_kbps','tot_kbps'
 ]
 df_clean = df[Features]
-
-from sklearn.model_selection import train_test_split
 
 X = df_clean
 y = df['label']
