@@ -1,4 +1,6 @@
 from xgboost import XGBClassifier
+from sklearn.pipeline import Pipeline
+from sklearn.model_selection import RandomizedSearchCV, StratifiedKFold
 
 scale_pos_weight = len(y_train[y_train==0]) / len(y_train[y_train==1])
 
@@ -16,8 +18,6 @@ xgb_clf = XGBClassifier(
 
 )
 
-from xgboost import XGBClassifier
-
 XG_pipeline = Pipeline(steps=[
     ('preprocess', preprocessor),
     ('classifier', xgb_clf)
@@ -29,8 +29,6 @@ param_grid = {
     'classifier__subsample': [0.7, 0.8, 1.0],
     'classifier__colsample_bytree': [0.7, 0.8, 1.0]
 }
-
-from sklearn.model_selection import RandomizedSearchCV, StratifiedKFold
 
 cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
 random_search = RandomizedSearchCV(
