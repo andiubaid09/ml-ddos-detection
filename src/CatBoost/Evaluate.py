@@ -1,6 +1,8 @@
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 from sklearn.model_selection import KFold, cross_val_score
 import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 best_modelCAT = random_search.best_estimator_
 print(best_modelCAT)
@@ -37,8 +39,6 @@ cm = confusion_matrix(y_test, y_predi_test)
 print(cm)
 
 # Visualisasi 
-import matplotlib.pyplot as plt
-import seaborn as sns
 
 label = ['Normal', 'DDoS']
 cm = confusion_matrix(y_test, y_predi_test)
