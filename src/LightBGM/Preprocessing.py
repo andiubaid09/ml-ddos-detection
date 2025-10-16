@@ -4,7 +4,9 @@ from google.colab import drive
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OneHotEncoder
-
+from sklearn.compose import ColumnTransformer
+from lightgbm import LGBMClassifier
+from sklearn.pipeline import Pipeline
 
 drive.mount ('/content/drive')
 datasheet = '/content/drive/My Drive/Datasheet/DDoS/dataset_sdn.csv'
@@ -43,16 +45,12 @@ encoder = OneHotEncoder(handle_unknown='ignore', sparse_output=False)
 encoder_cat = categorial_feat
 encoder_tranform = encoder
 
-from sklearn.compose import ColumnTransformer
-
 preprocessor = ColumnTransformer([
     ('num', num_tranform, num_features),
     ('cat', encoder_tranform, encoder_cat)
 ], remainder='drop')
 
 # Membuat base Model LightGBM
-from lightgbm import LGBMClassifier
-
 model = LGBMClassifier(
     objective='binary',
     metric ='auc',
@@ -64,9 +62,6 @@ model = LGBMClassifier(
     random_state=42,
     n_jobs=-1
 )
-
-from sklearn.pipeline import Pipeline
-
 lbgm_pipeline = Pipeline([
     ('preprocess', preprocessor),
     ('classifier', model)
