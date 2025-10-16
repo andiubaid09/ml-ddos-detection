@@ -1,6 +1,6 @@
-scale_pos_weight = len(y_train[y_train==0]) / len(y_train[y_train==1])
-
 from xgboost import XGBClassifier
+
+scale_pos_weight = len(y_train[y_train==0]) / len(y_train[y_train==1])
 
 xgb_clf = XGBClassifier(
     objective='binary:logistic',
