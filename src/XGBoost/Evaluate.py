@@ -1,7 +1,10 @@
-best_model = random_search.best_estimator_
-
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+from sklearn.metrics import confusion_matrix, accuracy_score, classification_report
+from sklearn.model_selection import KFold
+import matplotlib.pyplot as plt
+import seaborn as sns
 
+best_model = random_search.best_estimator_
 # Prediksi di training set untuk mengetahui overfit sebuah model
 y_train_pred = best_model.predict(X_train)
 
@@ -10,13 +13,10 @@ train_acc = accuracy_score(y_train, y_train_pred)
 print("Training Accuracy:", train_acc)
 
 # Evaluate model menggunakan datasheet test
-from sklearn.metrics import confusion_matrix, accuracy_score, classification_report
 y_pred = best_model.predict(X_test)
 acc = accuracy_score(y_test, y_pred)
 print(classification_report(y_test, y_pred))
 print('Akurasi :', acc)
-
-from sklearn.model_selection import KFold
 
 kf = KFold(n_splits=5, shuffle=True, random_state=42)
 scores = cross_val_score(best_model, X, y, cv=kf)
@@ -28,8 +28,6 @@ corr = df[Features + ['label']].select_dtypes(include=['number']).corr()['label'
 print(corr)
 
 # Grafik evaluasi confusion matrix
-import matplotlib.pyplot as plt
-import seaborn as sns
 
 label = ['Normal','DDoS']
 cm = confusion_matrix(y_test, y_pred)
