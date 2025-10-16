@@ -1,9 +1,11 @@
 import pandas as pd
 from google.colab import drive
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.compose import ColumnTransformer
+
 drive.mount('/content/drive')
-
 datasheet = '/content/drive/My Drive/Datasheet/DDoS/dataset_sdn.csv'
-
 df = pd.read_csv(datasheet)
 print("Jumlah Missing Values")
 print(df.isnull().sum())
@@ -15,9 +17,6 @@ Features = [
     'dt','dur','dur_nsec','tot_dur','pktrate','Protocol','port_no','tx_kbps','rx_kbps','tot_kbps'
 ]
 df_fitur = df[Features]
-
-from sklearn.model_selection import train_test_split
-
 X = df_fitur
 y = df['label']
 X_train, X_test, y_train, y_test = train_test_split(
@@ -28,17 +27,13 @@ X_train, X_val, y_train, y_val = train_test_split(
 )
 numeric_features = ['dt','dur','dur_nsec','tot_dur','pktrate','port_no','tx_kbps','rx_kbps','tot_kbps']
 categorial_features = ['Protocol']
-
-from sklearn.preprocessing import StandardScaler, OneHotEncoder
-
 scaler = StandardScaler()
 num_feat = numeric_features
 num_tranform = scaler
+
 encoder = OneHotEncoder(handle_unknown='ignore', sparse_output=False)
 cat_feat = categorial_features
 cat_transform = encoder
-
-from sklearn.compose import ColumnTransformer
 
 preprocessor = ColumnTransformer(
     transformers=[
