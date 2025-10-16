@@ -1,7 +1,6 @@
 from scipy.stats import randint
 from sklearn.model_selection import RandomizedSearchCV, StratifiedKFold
 
-
 param_distributions = {
     'classifier__n_estimators': randint(100,200,300),
     'classifier__max_depth': randint(4, 5, 10),
