@@ -1,5 +1,6 @@
 from google.colab import drive
 import pandas as pd
+from sklearn.model_selection import train_test_split
 
 drive.mount('/content/drive')
 datasheet = '/content/drive/My Drive/Datasheet/DDoS/dataset_sdn.csv'
