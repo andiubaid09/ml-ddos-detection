@@ -1,8 +1,12 @@
 import pandas as pd
 import numpy as np
 from google.colab import drive
-drive.mount ('/content/drive')
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import OneHotEncoder
 
+
+drive.mount ('/content/drive')
 datasheet = '/content/drive/My Drive/Datasheet/DDoS/dataset_sdn.csv'
 df = pd.read_csv(datasheet)
 
@@ -21,8 +25,6 @@ numeric_feat = ['dt','dur','dur_nsec','tot_dur','pktrate','port_no','tx_kbps','r
 categorial_feat = ['Protocol']
 
 # Membagi data dengan komposisi X = 80% dan y = 20% untuk model
-from sklearn.model_selection import train_test_split
-
 X = df_clean
 y = df['label']
 X_train, X_test, y_train, y_test = train_test_split(
@@ -33,14 +35,9 @@ ratio = len(y_train[y_train==0]) / len(y_train[y_train==1])
 print("Ratio class imbalance (0/1)",ratio)
 
 #Hasilnya akan menunjukkan Kelas 0(Normal) ada 1,56x lebih banyak daripada kelas 1(DDoS) di training set
-
-from sklearn.preprocessing import StandardScaler
-
 scaler = StandardScaler()
 num_features = numeric_feat
 num_tranform = scaler
-
-from sklearn.preprocessing import OneHotEncoder
 
 encoder = OneHotEncoder(handle_unknown='ignore', sparse_output=False)
 encoder_cat = categorial_feat
