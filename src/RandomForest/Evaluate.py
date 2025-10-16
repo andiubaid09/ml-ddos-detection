@@ -1,8 +1,15 @@
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+from sklearn.metrics import (
+    accuracy_score, classification_report, confusion_matrix,
+    f1_score, recall_score
+)
+import matplotlib.pyplot as plt
+import seaborn as sns
+
 best_model = random_search.best_estimator_
 print(best_model)
 
 # Melakukan pengetasan performa model menggunakan data training agar diliat overfit atau tidaknya sebuah model
-from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 
 y_train_pred = best_model.predict(X_train)
 acc = accuracy_score(y_train,y_train_pred)
@@ -18,13 +25,6 @@ print(classification_report(y_test,y_pred))
 # Jika korelasi lebih dari >0.95 pada fitur, maka terjadi leakage data (kebocoran data)
 korelasi = df[Features + ['label']].select_dtypes(include=['number']).corr()['label'].sort_values(ascending=False)
 print(korelasi)
-
-from sklearn.metrics import (
-    accuracy_score, classification_report, confusion_matrix,
-    f1_score, recall_score
-)
-import matplotlib.pyplot as plt
-import seaborn as sns
 
 #Confusion Matrix
 cm = confusion_matrix(y_test, y_pred)
