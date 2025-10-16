@@ -1,4 +1,5 @@
 from scipy.stats import randint, uniform
+from sklearn.model_selection import RandomizedSearchCV
 
 param_distrib = {
     'classifier__n_estimators': randint(100, 600),
@@ -10,8 +11,6 @@ param_distrib = {
     'classifier__reg_alpha': uniform(0,1),
     'classifier__reg_lambda':uniform(0,1)
 }
-
-from sklearn.model_selection import RandomizedSearchCV
 
 random_searchlbgm = RandomizedSearchCV(
     estimator=lbgm_pipeline,
