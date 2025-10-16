@@ -1,4 +1,6 @@
 from scipy.stats import randint
+from sklearn.model_selection import RandomizedSearchCV, StratifiedKFold
+
 
 param_distributions = {
     'classifier__n_estimators': randint(100,200,300),
@@ -8,8 +10,6 @@ param_distributions = {
     'classifier__max_features': ['sqrt', 'log2', None],
     'classifier__bootstrap': [True,False]
 }
-
-from sklearn.model_selection import RandomizedSearchCV, StratifiedKFold
 cv = StratifiedKFold(n_splits=5 , shuffle=True, random_state=42)
 random_search = RandomizedSearchCV(
     estimator=rf_pipeline,
